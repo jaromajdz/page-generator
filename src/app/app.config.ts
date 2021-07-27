@@ -58,7 +58,7 @@ export const appConfig: dataConfigT[] = [
    config: {
      headerConfig: {
        logoPicture: 'a_tre_logo.jpg',
-       logoPictureLink: '/appinfo',
+       logoPictureLink: 'appinfo',
        headPicture: 'north_sea.jpg',
        toolbarIfLoggedIn: dashbordToolbar,
        toolbarConfig: [
@@ -113,9 +113,9 @@ export const appConfig: dataConfigT[] = [
     instancename: 'appinfo',
     config: {
       headerConfig: {
-        logoPicture: '',
-        logoPictureLink: '/home/welcome',
-        headPicture: '',
+        logoPicture: 'a_tre_logo.jpg',
+        logoPictureLink: '/welcome',
+        headPicture: 'north_sea2.jpg',
         toolbarIfLoggedIn: dashbordToolbar,
         toolbarConfig: [
           {

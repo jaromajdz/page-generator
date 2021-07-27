@@ -69,5 +69,6 @@
     id="top-image"
     [src]="'assets/images/' + config?.headPicture"
     *ngIf="config?.headPicture?.length"
+    (click)="homeNavigate()"
   >
 </div>

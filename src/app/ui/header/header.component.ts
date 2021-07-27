@@ -3,10 +3,11 @@ import {L10N_LOCALE, L10nLocale, L10nTranslationService} from "angular-l10n";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {l10nConfig} from "../../ln10Config";
-import {Router} from "@angular/router";
-import {appConfig, returnConfig} from "../../app.config";
+import {NavigationEnd, Router, RouterEvent} from "@angular/router";
+import {appConfig} from "../../app.config";
 import {AuthService} from "../../services/authService";
 import {headerConfigT, toolbarConfigT} from "../types/types";
+import {debounceTime, filter, tap} from "rxjs/operators";
 
 interface toolbarConfigExtT extends toolbarConfigT{
   curr: string;
@@ -17,7 +18,7 @@ interface toolbarConfigExtT extends toolbarConfigT{
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
+export class HeaderComponent implements OnInit, OnDestroy{
 
   @Input()actionArea: boolean =  true
 
@@ -47,11 +48,6 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
     this.lang =  locale.language
   }
 
-
-  ngAfterViewInit(): void {
-     this.toolbarSettings()
-  }
-
   logout(){
     this._authService.logout()
     this._auth = false
@@ -60,16 +56,28 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
 
-    this.currPage = this._router.url.split('/').splice(-1, 1)[0];
-    this.currPage =  this.currPage? 'welcome' : this.currPage
+    let sub$ = this._router.events.pipe(
+      //debounceTime(300),
+      filter((re: any)=>re instanceof NavigationEnd),
+      tap((ev: NavigationEnd)=>{
+
+         this.currPage = ev.url.split('/').splice(-1, 1)[0];
+         console.log('straszna dupa', this.currPage)
+         this.currPage =  this.currPage!==undefined?  this.currPage : 'welcome'
+         console.log('straszna dupa 1', this.currPage)
+         this.toolbarSettings()
+
+      })
+    ).subscribe()
+    this._sub.add(sub$)
 
     this.localeForm.controls['language'].patchValue(this._translation.getLocale().language)
 
-    let sub$ = this._authService.checkIsLoggedIn().subscribe(
+     sub$ = this._authService.checkIsLoggedIn().subscribe(
       val=>{
           this._auth =  val
           this.toolbarSettings()
-        }
+         }
         )
     this._sub.add(sub$)
 
@@ -113,7 +121,8 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   homeNavigate() {
-    this.config?.logoPicture? this._router.navigate([this.config.logoPictureLink]) : null;
+    console.log('picture link', this.config.logoPictureLink)
+    this.config?.logoPictureLink? this._router.navigate([this.config.logoPictureLink]) : null;
   }
 
   ngOnDestroy(): void {

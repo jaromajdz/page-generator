@@ -4,12 +4,14 @@ import {HeaderComponent} from "./header/header.component";
 import {EditModule} from "./edit/edit.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
+import {MainComponent} from "./main/main.component";
 
 
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    MainComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import {RouterModule} from "@angular/router";
   ],
   exports:[
     HeaderComponent,
-    EditModule
+    EditModule,
+    MainComponent
   ]
 })
 export class UiModule { }
