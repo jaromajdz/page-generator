@@ -1,2 +1,3 @@
-# Header H1
-# page-generator
+# Page generator
+## About the Page generator
+
