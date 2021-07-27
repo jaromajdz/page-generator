@@ -1,0 +1,87 @@
+.header-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.lang{
+  display: flex;
+  justify-items: flex-end;
+  align-items: flex-end;
+}
+
+.nav-buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.app-toolbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  padding-left: 35px;
+  width: 1320px;
+  .action_area{
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+      .button{
+        margin-left: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+   }
+
+  }
+
+.logo_size{
+  width: 100px;
+  margin: 25px 25px 15px 0px;
+}
+
+a {
+  display: block;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-bottom: solid 2px white;
+  /*
+  &:hover{
+    border-bottom: solid 2px var(--ion-color-primary);
+  }
+   */
+}
+
+.active{
+  border-bottom: solid 2px var(--ion-color-primary);
+}
+
+
+.select{
+    min-width: 50px;
+  }
+
+.image-div{
+  flex: auto;
+  width: 100%;
+  max-height: 600px;
+  display: flex;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.img{
+  mask-size: cover;
+  mask-position: center;
+  width: 100%;
+ }
+
+@media screen and(max-width: 550px) {
+  .logo_size{
+    width: 60px;
+  }
+}

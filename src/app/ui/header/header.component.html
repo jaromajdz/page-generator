@@ -1,0 +1,73 @@
+<div class="header-container" *ngIf="config!==undefined">
+    <div class="app-toolbar" >
+      <div class="action_area" *ngIf="config.toolbarConfig">
+
+        <div class="button" *ngFor="let one of config.toolbarConfig">
+          <ng-container [ngSwitch]="one.type">
+
+            <div class="button" *ngSwitchCase="'button'">
+              <button  [routerLink]="[one.link]">
+                {{one.label | trans: 'buttons' : lang}}
+              </button>
+            </div>
+
+            <div class="button"
+                 [formGroup]="localeForm"
+              *ngSwitchCase="'languageSelection'"
+            >
+              <app-nice-dropdown
+                [formControlName]="'language'"
+                [lang]="locale.language"
+                [options] = "languages"
+                [prefix]="'universal'"
+              >
+              </app-nice-dropdown>
+            </div>
+
+            <div *ngSwitchCase="'icon'">
+              <a [routerLink]="[one.link]">
+                <span [className]="'oi oi-' + one.icon_name"
+                      [style.font-size]="one.size + 'px'"
+                ></span>
+              </a>
+            </div>
+
+            <div *ngSwitchCase="'logout'">
+              <a (click)="logout()">
+                <span [className]="'oi oi-' + one.icon_name"
+                      [style.font-size]="one.size + 'px'"
+                ></span>
+              </a>
+            </div>
+
+
+          </ng-container>
+
+
+        </div>
+
+     </div>
+
+
+      <div class="action-area" *ngIf="config!==undefined">
+
+        <a (click)="homeNavigate()" *ngIf="config?.logoPictureLink">
+          <img
+            [src]="'assets/images/' + config?.logoPicture"
+            class="logo_size"
+            *ngIf="config?.logoPicture"
+          />
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+
+<div *ngIf="config!==undefined">
+  <img class="img"
+    id="top-image"
+    [src]="'assets/images/' + config?.headPicture"
+    *ngIf="config?.headPicture?.length"
+  >
+</div>

@@ -1,0 +1,13 @@
+<!--
+  <select [value]="selectedItem" (change)="select($event)">
+    <option [value]="opt.value" *ngFor="let opt of options">{{opt.label | trans: prefix : lang}}</option>
+  </select>
+-->
+
+<div class="dropdown" (click)="show=true">
+  <div class="selectedItem">{{selectedItem | trans: prefix: lang}}</div>
+  <div><span class="oi oi-arrow-circle-bottom"></span></div>
+  <div *ngIf="show" class="options">
+      <div (click)="selectItem($event,opt.value)" *ngFor="let opt of options">{{opt.label | trans: prefix: lang}}</div>
+  </div>
+</div>
