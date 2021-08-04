@@ -1,0 +1,27 @@
+
+
+$position: (
+  "right": flex-start,
+  "center":  center,
+  "left": flex-end,
+);
+
+@mixin button-position($pos){
+  .position-#{$pos}{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: map-get($position, $pos);
+  }
+}
+
+.actionarea-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 10px;
+   @include button-position("rigth");
+   @include button-position("center");
+   @include button-position("left");
+}

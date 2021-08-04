@@ -1,7 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+//@use "variables" as var;
+
 @import "icons";
+@import "variables";
 // @import "~open-iconic/font/css/open-iconic";
+
+
 
 body{
   margin: 0;
+  font-family: "Roboto", "Open Sans", "Helvetica Neue";
+  font-size: $font-size;
+  background-color: map-get($colors, "backgroundColor");
+
+  @each $name, $color in $colors {
+   .button-#{$name}{
+        @include text-contrast($color);
+        border: none;
+        border-radius: 3px;
+        text-decoration: none;
+        background-color: $color;
+        padding: 10px 15px;
+        min-width: 80px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 2px 2px 7px -2px #000000;
+        cursor: pointer;
+        position: relative;
+    }
+  }
+  .button-down{
+    top: 2px;
+    left: 2px;
+    box-shadow: 0px 0px 7px 0px #000000;
+  }
+
 }

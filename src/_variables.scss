@@ -1,0 +1,30 @@
+$font-path: "./assets/fonts/roboto";
+@font-face {
+  src: url("#{$font-path}/Roboto-Light.ttf") format("truetype");
+  font-family: "Roboto";
+  font-weight: 100;
+};
+
+$font-size: 14px;
+
+$colors: (
+  primary: #1b5e20,
+  secondary: #c6ff00,
+  warn: #ffeb3b,
+  danger: #ff3d00,
+  info: #e0e0e0,
+  backgroundColor: #ffffff //#e0e0e0,
+  );
+
+  @mixin text-contrast($n) {
+    $color-brightness: round((red($n) * 299) + (green($n) * 587) + (blue($n) * 114) / 1000);
+    $light-color: round((red(#ffffff) * 299) + (green(#ffffff) * 587) + (blue(#ffffff) * 114) / 1000);
+
+    @if abs($color-brightness) < ($light-color/2){
+      color: white;
+    }
+
+    @else {
+      color: black;
+    }
+  }

@@ -1,0 +1,11 @@
+<button
+  [class]="'button-' + color"
+  [class.button-down]="down"
+  type="button"
+  (click)="action.emit(result)"
+  (mousedown)="down=true"
+  (mouseup)="down=false"
+>
+  <ng-content></ng-content>
+
+</button>

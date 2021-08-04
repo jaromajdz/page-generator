@@ -4,6 +4,9 @@ import {TranslateArrayPipe} from "./helpers/translate-array.pipe";
 import {TransPipe} from "./helpers/trans.pipe";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { NiceDropdownComponent } from './elements/nice-dropdown/nice-dropdown.component';
+import { EditComponent } from './edit/edit.component';
+import { ActionareaComponent } from './elements/actionarea/actionarea.component';
+import { ButtonComponent } from './elements/button/button.component';
 
 
 
@@ -11,7 +14,10 @@ import { NiceDropdownComponent } from './elements/nice-dropdown/nice-dropdown.co
   declarations: [
     TranslateArrayPipe,
     TransPipe,
-    NiceDropdownComponent
+    NiceDropdownComponent,
+    EditComponent,
+    ActionareaComponent,
+    ButtonComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +27,8 @@ import { NiceDropdownComponent } from './elements/nice-dropdown/nice-dropdown.co
   exports:[
     TranslateArrayPipe,
     TransPipe,
-    NiceDropdownComponent
+    NiceDropdownComponent,
+    ButtonComponent
   ]
 })
 export class EditModule { }

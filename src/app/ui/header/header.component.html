@@ -6,9 +6,9 @@
           <ng-container [ngSwitch]="one.type">
 
             <div class="button" *ngSwitchCase="'button'">
-              <button  [routerLink]="[one.link]">
-                {{one.label | trans: 'buttons' : lang}}
-              </button>
+                <app-button [routerLink]="[one.link]">
+                  {{one.label | trans: 'buttons' : lang}}
+                </app-button>
             </div>
 
             <div class="button"
