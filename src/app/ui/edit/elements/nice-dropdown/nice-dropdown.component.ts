@@ -21,10 +21,15 @@ export class NiceDropdownComponent implements OnInit, ControlValueAccessor {
   @Input()lang!: string
   @Input()prefix!: string
 
-  selectedItem: any
+  backdrop!: any
+  selectedItem!: any
   show: boolean = false
 
-  constructor() { }
+  constructor() {
+    this.backdrop = document.createElement('div')
+    this.backdrop.style.cssText = `position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-color: #000000; opacity: 0.0;z-index: 999;`
+    this.backdrop.setAttribute('id', 'backdrop')
+   }
 
   registerOnChange(fn: (_: any) => void): void {
     this._onChange = fn;
@@ -56,6 +61,25 @@ export class NiceDropdownComponent implements OnInit, ControlValueAccessor {
     this._onChange(this.selectedItem)
     this._onTouched()
     this.show = false
+    let elem = document.getElementById('backdrop')
+    elem? document.body.removeChild(elem) : null
   }
+
+
+  showItems(): void{
+    const dismiss = (ev: MouseEvent) =>{
+      console.log('clicked')
+      let el = document.getElementById('backdrop')
+      el? document.body.removeChild(el) : null
+      this.show = false
+    }
+
+    document.body.appendChild(this.backdrop)
+    let elem = document.getElementById('backdrop')
+      elem? elem.addEventListener('click', dismiss) : null
+    this.show = true
+  }
+
+
 
 }

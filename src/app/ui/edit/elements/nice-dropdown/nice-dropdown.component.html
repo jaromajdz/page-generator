@@ -4,10 +4,20 @@
   </select>
 -->
 
-<div class="dropdown" (click)="show=true">
+<div class="dropdown background-color-primary button-shadow" (click)="showItems()">
+
   <div class="selectedItem">{{selectedItem | trans: prefix: lang}}</div>
-  <div><span class="oi oi-arrow-circle-bottom"></span></div>
+
+  <div class="arrow"><span class="oi oi-arrow-circle-bottom"></span></div>
+
   <div *ngIf="show" class="options">
-      <div (click)="selectItem($event,opt.value)" *ngFor="let opt of options">{{opt.label | trans: prefix: lang}}</div>
+      <div
+        class="nice-dropdown-list"
+        (click)="selectItem($event,opt.value)"
+        *ngFor="let opt of options"
+        >
+        {{opt.label | trans: prefix: lang}}
+      </div>
   </div>
+
 </div>
